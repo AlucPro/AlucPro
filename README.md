@@ -1,4 +1,12 @@
-### Hi there 👋
-
-[![Readme Card](https://github-readme-stats.vercel.app/api?username=AlucPro&show_icons=true&title_color=ffffff&icon_color=bb2acf&text_color=daf7dc&bg_color=151515)](https://github.com/alucPro/github-readme-stats)
-
+<p align="center">
+  <br>
+  <br>
+  <br>
+  <span>&nbsp;&nbsp;</span>
+  <samp>Hello there. I'm <a href="https://blog.aluc.me">Alucard</a>.<br> I'm a full-stack software engineer.<br><br>#javascript, #golang</samp>
+  <br>
+  <br>
+  <br>
+  <br>
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=alucPro&show_icons=true&hide_border=true">
+</p>
