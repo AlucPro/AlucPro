@@ -9,13 +9,13 @@
   <br>
   <br>
   <img align="center" src="https://github-readme-stats-topaz-phi.vercel.app/api?username=alucPro&show_icons=true&hide_border=true&count_private=true">
-  <hr/>
-  <div style="display:flex;align-items:center;justify-content: center;">
+  <hr style="height: 1px"/>
+  <p align="center">s
   <a href="https://dg.aluc.me/">
     <img
     alt="blog"
     height="24px"
-    src="./icon/blog.svg"
+    src="./icon/badge-blog.svg"
   />
   </a>
   <a href="https://www.instagram.com/aluc_pro/">
@@ -38,5 +38,5 @@
     height="24px"
     src="./icon/badge-twitter.svg"
   />
-  </div>
+  </p>
 </p>
