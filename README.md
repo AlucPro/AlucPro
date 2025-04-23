@@ -8,5 +8,5 @@
   <br>
   <br>
   <br>
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=alucPro&show_icons=true&hide_border=true">
+  <img align="center" src="https://github-readme-stats-7tvv4735d-alucards-projects-e16c9708.vercel.app/api?username=alucPro&show_icons=true&hide_border=true&count_private=true">
 </p>
