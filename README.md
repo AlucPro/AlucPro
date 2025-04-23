@@ -10,7 +10,7 @@
   <br>
   <img align="center" src="https://github-readme-stats-topaz-phi.vercel.app/api?username=alucPro&show_icons=true&hide_border=true&count_private=true">
   <hr style="height: 1px"/>
-  <p align="center">s
+  <p align="center">
   <a href="https://dg.aluc.me/">
     <img
     alt="blog"
@@ -18,6 +18,7 @@
     src="./icon/badge-blog.svg"
   />
   </a>
+  <span>&nbsp;</span>
   <a href="https://www.instagram.com/aluc_pro/">
     <img
     alt="instagram"
@@ -25,6 +26,7 @@
     src="./icon/badge-instagram.svg"
   />
   </a>
+  <span>&nbsp;</span>
   <a href="https://www.threads.net/@aluc_pro">
     <img
     alt="threads"
@@ -32,6 +34,7 @@
     src="./icon/badge-threads.svg"
   />
   </a>
+  <span>&nbsp;</span>
   <a href="https://x.com/AlucPro">
     <img
     alt="x"
