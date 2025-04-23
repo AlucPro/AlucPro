@@ -1,3 +1,11 @@
+<style>
+  a {
+    text-decoration: none !important; 
+  }
+  hr {
+    height: 1px !important;
+  }
+</style>
 <p align="center">
   <br>
   <br>
@@ -19,6 +27,7 @@
   />
   </a>
   <span>&nbsp;</span>
+  <span>&nbsp;</span>
   <a href="https://www.instagram.com/aluc_pro/" style="text-decoration: none;">
     <img
     alt="instagram"
@@ -27,6 +36,7 @@
   />
   </a>
   <span>&nbsp;</span>
+  <span>&nbsp;</span>
   <a href="https://www.threads.net/@aluc_pro" style="text-decoration: none;">
     <img
     alt="threads"
@@ -34,6 +44,8 @@
     src="./icon/badge-threads.svg"
   />
   </a>
+  <span>&nbsp;</span>
+  <span>&nbsp;</span>
   <a href="https://x.com/AlucPro" style="text-decoration: none;">
     <img
     alt="x"
