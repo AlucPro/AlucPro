@@ -3,7 +3,7 @@
   <br>
   <br>
   <span>&nbsp;&nbsp;</span>
-  <samp>Hello there. I'm <a href="https://blog.aluc.me">Alucard</a>.<br> I'm a full-stack software engineer.
+  <samp>Hello there. I'm <a href="https://dg.aluc.me">Alucard</a>.<br> I'm a full-stack software engineer.
   <br>
   <span>Currently, I'm making a AI game <a href="https://rollingsagas.com">Rolling Sagas</a>.</span>
   <br><br>#javascript, #golang</samp>
