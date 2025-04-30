@@ -30,26 +30,14 @@
   </a>
   <span>&nbsp;</span>
   <a href="https://www.instagram.com/aluc_pro/">
-    <img
-    alt="instagram"
-    height="24px"
-    src="./icon/badge-instagram.svg"
-  />
+   Instagram
   </a>
   <span>&nbsp;</span>
   <a href="https://www.threads.net/@aluc_pro">
-    <img
-    alt="threads"
-    height="24px"
-    src="./icon/badge-threads.svg"
-  />
+   Threads
   </a>
   <span>&nbsp;</span>
   <a href="https://x.com/AlucPro">
-    <img
-    alt="x"
-    height="24px"
-    src="./icon/badge-twitter.svg"
-  />
+  Twitter
   </p>
 </p>
