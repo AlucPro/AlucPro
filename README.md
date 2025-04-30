@@ -14,19 +14,11 @@
   <img align="center" src="https://github-readme-stats-topaz-phi.vercel.app/api?username=alucPro&show_icons=true&hide_border=true&count_private=true">
   <p align="center">
   <a href="https://dg.aluc.me/">
-    <img
-    alt="blog"
-    height="24px"
-    src="./icon/badge-blog.svg"
-  />
+    Blog
   </a>
   <span>&nbsp;</span>
   <a href="https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/">
-    <img
-    alt="linkedin"
-    height="24px"
-    src="./icon/badge-linkedin.svg"
-  />
+   Linkedin
   </a>
   <span>&nbsp;</span>
   <a href="https://www.instagram.com/aluc_pro/">
