@@ -1,39 +1,55 @@
-<h1 align="center">𝙷𝚒 𝚝𝚑𝚎𝚛𝚎 👋, 𝙸'𝚖 <a href="https://mingdg.notion.site/" target="_blank">𝙼𝚒𝚗𝚐</a></h1>
-<h3 align="center">𝙵𝚞𝚕𝚕-𝚂𝚝𝚊𝚌𝚔 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛 𝚋𝚞𝚒𝚕𝚍𝚒𝚗𝚐 𝚝𝚘𝚘𝚕𝚜 𝚊𝚗𝚍 𝙰𝙸 𝚙𝚛𝚘𝚍𝚞𝚌𝚝𝚜.</h3>
+# Ming
+
+<p align="center">
+  Full-Stack Engineer building AI products, developer tools, and interactive experiences.
+</p>
 
 <p align="center">
   <a href="https://rollingsagas.com" target="_blank">
-    <img src="https://img.shields.io/badge/🎮 Rolling%20Sagas-AI%20Game-blueviolet?style=for-the-badge" alt="Rolling Sagas">
+    <img src="https://img.shields.io/badge/Featured-Rolling%20Sagas-1f6feb?style=for-the-badge" alt="Rolling Sagas">
   </a>
-  <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=for-the-badge&logo=javascript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Code-Go-informational?style=for-the-badge&logo=go&logoColor=white" />
+  <img src="https://img.shields.io/badge/Focus-AI%20Products-111827?style=for-the-badge" alt="AI Products" />
+  <img src="https://img.shields.io/badge/Stack-JavaScript%20%7C%20Go-0f766e?style=for-the-badge" alt="JavaScript and Go" />
 </p>
 
----
+## What I Do
 
-### 👨‍💻 𝙰𝚋𝚘𝚞𝚝 𝙼𝚎
+I build products from idea to production, with a focus on AI-powered experiences, full-stack systems, and fast iteration.
 
-- 💼 𝙸'𝚖 𝚊 𝚙𝚊𝚜𝚜𝚒𝚘𝚗𝚊𝚝𝚎 𝚍𝚎𝚟𝚎𝚕𝚘𝚙𝚎𝚛 𝚠𝚑𝚘 𝚕𝚘𝚟𝚎𝚜 𝚋𝚞𝚒𝚕𝚍𝚒𝚗𝚐 𝚒𝚗𝚝𝚎𝚛𝚊𝚌𝚝𝚒𝚟𝚎 𝚎𝚡𝚙𝚎𝚛𝚒𝚎𝚗𝚌𝚎𝚜.
-- 🧠 𝙲𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 𝚠𝚘𝚛𝚔𝚒𝚗𝚐 𝚘𝚗 𝚊𝚗 **𝙰𝙸-𝚙𝚘𝚠𝚎𝚛𝚎𝚍 𝚐𝚊𝚖𝚎** — [𝚁𝚘𝚕𝚕𝚒𝚗𝚐 𝚂𝚊𝚐𝚊𝚜](https://rollingsagas.com)
-- 🌐 𝙸 𝚠𝚛𝚒𝚝𝚎 𝚊𝚋𝚘𝚞𝚝 𝚝𝚎𝚌𝚑, 𝚐𝚊𝚖𝚎𝚜, 𝚊𝚗𝚍 𝚕𝚒𝚏𝚎 𝚘𝚗 𝚖𝚢 [𝙱𝚕𝚘𝚐](https://mingdg.notion.site/)
-- 📫 𝚁𝚎𝚊𝚌𝚑 𝚘𝚞𝚝 𝚝𝚘 𝚖𝚎 𝚟𝚒𝚊 [𝙻𝚒𝚗𝚔𝚎𝚍𝙸𝚗](https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/)
+I care about more than shipping code. I like turning ambiguous ideas into useful products, improving product quality through engineering, and building things people actually want to come back to.
 
----
+## Current Focus
 
-### 📊 𝙶𝚒𝚝𝙷𝚞𝚋 𝚂𝚝𝚊𝚝𝚜
+- Building [Rolling Sagas](https://rollingsagas.com), an AI-driven game experience.
+- Exploring practical AI applications, product design, and interactive systems.
+- Writing about tech, games, and life on my [blog](https://mingdg.notion.site/).
+
+## Why Work With Me
+
+- I combine product thinking with engineering execution.
+- I am comfortable across frontend, backend, and AI product workflows.
+- I move quickly, care about details, and optimize for real user value.
+
+## Tech I Use
+
+`JavaScript` `TypeScript` `Go` `AI product development` `Web apps` `Tooling` `Product prototyping`
+
+## Selected Link
+
+- Featured project: [Rolling Sagas](https://rollingsagas.com)
+
+## Open To
+
+I am interested in collaborating on product engineering, AI application development, and full-stack roles where speed, ownership, and user experience matter.
+
+## Connect
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AlucPro&show_icons=true" alt="GitHub Stats">
+  <a href="https://mingdg.notion.site/" target="_blank"><img src="https://img.shields.io/badge/Blog-000000?style=for-the-badge&logo=ghost&logoColor=white" alt="Blog" /></a>
+  <a href="https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://x.com/AlucPro" target="_blank"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
 </p>
 
----
-
-### 🌐 𝙲𝚘𝚗𝚗𝚎𝚌𝚝 𝚠𝚒𝚝𝚑 𝙼𝚎
-
 <p align="center">
-  <a href="https://mingdg.notion.site/" target="_blank"><img src="https://img.shields.io/badge/Blog-%23000000.svg?&style=for-the-badge&logo=ghost&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="https://www.instagram.com/aluc_pro/" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" /></a>
-  <a href="https://www.threads.net/@aluc_pro" target="_blank"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" /></a>
-  <a href="https://x.com/AlucPro" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a>
+  If you are building something ambitious, feel free to reach out.
 </p>
