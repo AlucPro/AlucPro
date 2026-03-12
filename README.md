@@ -1,5 +1,5 @@
-<h1 align="center">Hi there 👋, I'm <a href="https://mingdg.notion.site/" target="_blank">Ming</a></h1>
-<h3 align="center">Full-stack Software Engineer | AI Game Creator</h3>
+<h1 align="center">Hi there 👋, I'm <a href="https://mingdg.notion.site/" target="_blank">𝙼𝚒𝚗𝚐</a></h1>
+<h3 align="center">𝙵𝚞𝚕𝚕-𝚂𝚝𝚊𝚌𝚔 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛 𝚋𝚞𝚒𝚕𝚍𝚒𝚗𝚐 𝚝𝚘𝚘𝚕𝚜 𝚊𝚗𝚍 𝙰𝙸 𝚙𝚛𝚘𝚍𝚞𝚌𝚝𝚜.</h3>
 
 <p align="center">
   <a href="https://rollingsagas.com" target="_blank">
