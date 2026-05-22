@@ -5,6 +5,9 @@ const START_MARKER = "<!-- PROJECTS:START -->";
 const END_MARKER = "<!-- PROJECTS:END -->";
 const DEFAULT_README = new URL("../README.md", import.meta.url);
 const DEFAULT_PROJECTS = new URL("../.ai-context/CONTENT/projects.v4.json", import.meta.url);
+const OBSIDIAN_STATS_URL =
+  "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-plugin-stats.json";
+const LOGSEQ_STATS_URL = "https://raw.githubusercontent.com/logseq/marketplace/master/stats.json";
 
 const token = process.env.GITHUB_TOKEN;
 const headers = {
@@ -44,6 +47,24 @@ export function resolveProjectsPath() {
 }
 
 export async function buildProjectRow(project, fetchImpl = fetch) {
+  const type = project.type || "npm";
+
+  if (type === "project") {
+    return buildManualProjectRow(project);
+  }
+
+  if (type === "obsidian-plugin") {
+    return buildPluginProjectRow(project, fetchImpl, fetchObsidianDownloads);
+  }
+
+  if (type === "logseq-plugin") {
+    return buildPluginProjectRow(project, fetchImpl, fetchLogseqDownloads);
+  }
+
+  if (type !== "npm") {
+    throw new Error(`Unsupported project type: ${type}`);
+  }
+
   const repo = await fetchJson(fetchImpl, `https://api.github.com/repos/${project.repo}`);
   const npm = project.npm ? await fetchNpm(project.npm, fetchImpl) : null;
   const homepage = project.homepage || repo.homepage || "";
@@ -55,24 +76,60 @@ export async function buildProjectRow(project, fetchImpl = fetch) {
     stars: repo.stargazers_count ?? 0,
     forks: repo.forks_count ?? 0,
     downloads: npm?.downloads ?? null,
+    downloadsLabel: npm?.downloads === null ? "-" : `${formatCompact(npm.downloads)} total`,
     version: npm?.version ?? "",
+    versionLabel: formatVersion(npm?.version ?? ""),
     description: project.description || repo.description || "",
+  };
+}
+
+async function buildPluginProjectRow(project, fetchImpl, fetchDownloads) {
+  const repo = await fetchJson(fetchImpl, `https://api.github.com/repos/${project.repo}`);
+  const downloads = await fetchDownloads(project.pluginId || project.name, fetchImpl);
+  const homepage = project.homepage || repo.homepage || "";
+
+  return {
+    name: project.name,
+    repoUrl: repo.html_url || `https://github.com/${project.repo}`,
+    homepage,
+    stars: repo.stargazers_count ?? 0,
+    forks: repo.forks_count ?? 0,
+    downloads,
+    downloadsLabel: downloads === null ? "-" : `${formatCompact(downloads)} total`,
+    version: project.version ?? "",
+    versionLabel: project.version ? formatVersion(project.version) : "-",
+    description: project.description || repo.description || "",
+  };
+}
+
+function buildManualProjectRow(project) {
+  return {
+    name: project.name,
+    repoUrl: project.url || project.repoUrl || project.homepage || "",
+    homepage: project.homepage || "",
+    stars: project.stars ?? "-",
+    forks: project.forks ?? "-",
+    downloads: project.downloads ?? "-",
+    downloadsLabel: project.downloads ?? "-",
+    version: project.version ?? "-",
+    versionLabel: project.version ?? "-",
+    description: project.description || "",
   };
 }
 
 export function renderTable(rows) {
   const header = [
-    ["Project", "Homepage", "Stars", "Forks", "npm downloads", "Version", "Description"],
+    ["Project", "Homepage", "Stars", "Forks", "Downloads", "Version", "Description"],
     ["---", "---", "---:", "---:", "---:", "---", "---"],
   ];
   const body = rows.map((row) =>
     [
       link(row.name, row.repoUrl),
       row.homepage ? link("Website", row.homepage) : "-",
-      formatInteger(row.stars),
-      formatInteger(row.forks),
-      row.downloads === null ? "-" : `${formatCompact(row.downloads)}/mo`,
-      row.version ? `\`${escapeMarkdownCell(row.version)}\`` : "-",
+      formatMetric(row.stars),
+      formatMetric(row.forks),
+      escapeMarkdownCell(row.downloadsLabel ?? (row.downloads === null ? "-" : `${formatCompact(row.downloads)} total`)),
+      escapeMarkdownCell(row.versionLabel ?? formatVersion(row.version)),
       escapeMarkdownCell(row.description),
     ],
   );
@@ -96,7 +153,7 @@ export function replaceProjectsBlock(readme, table) {
 async function fetchNpm(packageName, fetchImpl) {
   const encoded = encodeURIComponent(packageName);
   const [downloads, metadata] = await Promise.all([
-    fetchJson(fetchImpl, `https://api.npmjs.org/downloads/point/last-month/${encoded}`, {
+    fetchJson(fetchImpl, `https://api.npmjs.org/downloads/point/${npmTotalRange()}/${encoded}`, {
       optional: true,
     }),
     fetchJson(fetchImpl, `https://registry.npmjs.org/${encoded}`, { optional: true }),
@@ -106,6 +163,26 @@ async function fetchNpm(packageName, fetchImpl) {
     downloads: downloads?.downloads ?? null,
     version: metadata?.["dist-tags"]?.latest ?? "",
   };
+}
+
+async function fetchObsidianDownloads(pluginId, fetchImpl) {
+  const stats = await fetchJson(fetchImpl, OBSIDIAN_STATS_URL, { optional: true });
+  return stats?.[pluginId]?.downloads ?? null;
+}
+
+async function fetchLogseqDownloads(pluginId, fetchImpl) {
+  const stats = await fetchJson(fetchImpl, LOGSEQ_STATS_URL, { optional: true });
+  const releases = stats?.[pluginId]?.releases;
+
+  if (!Array.isArray(releases)) {
+    return null;
+  }
+
+  return releases.reduce((sum, release) => sum + (Number(release?.[2]) || 0), 0);
+}
+
+export function npmTotalRange(today = new Date()) {
+  return `2015-01-10:${today.toISOString().slice(0, 10)}`;
 }
 
 async function fetchJson(fetchImpl, url, { optional = false } = {}) {
@@ -137,6 +214,18 @@ function escapeMarkdownCell(value) {
 
 function formatInteger(value) {
   return new Intl.NumberFormat("en", { maximumFractionDigits: 0 }).format(value);
+}
+
+function formatMetric(value) {
+  return typeof value === "number" ? formatInteger(value) : escapeMarkdownCell(value);
+}
+
+function formatVersion(value) {
+  if (!value || value === "-") {
+    return "-";
+  }
+
+  return String(value).startsWith("`") ? value : `\`${escapeMarkdownCell(value)}\``;
 }
 
 function formatCompact(value) {

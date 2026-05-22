@@ -1,5 +1,6 @@
 [
   {
+    "type": "npm",
     "name": "tool-manage",
     "repo": "AlucPro/tool-manage",
     "npm": "@alucpro/tool-manage",
@@ -8,11 +9,42 @@
     "featured": true
   },
   {
+    "type": "npm",
     "name": "pom-tool",
     "repo": "AlucPro/pom-tool",
     "npm": "pom-tool",
     "homepage": "",
     "description": "A simple Pomodoro timer CLI for terminal focus sessions.",
     "featured": true
+  },
+  {
+    "type": "logseq-plugin",
+    "name": "Logseq LeetCode",
+    "repo": "AlucPro/logseq-plugin-leetcode",
+    "pluginId": "logseq-plugin-leetcode",
+    "homepage": "",
+    "description": "A Logseq plugin that batch fetches LeetCode problems.",
+    "featured": true
+  },
+  {
+    "type": "obsidian-plugin",
+    "name": "LexiNote",
+    "repo": "AlucPro/obsidian-lexinote",
+    "pluginId": "lexinote",
+    "homepage": "",
+    "description": "An Obsidian plugin for LexiNote.",
+    "featured": true
+  },
+  {
+    "type": "project",
+    "name": "Demo Project",
+    "url": "https://example.com",
+    "homepage": "https://example.com",
+    "stars": "-",
+    "forks": "-",
+    "downloads": "-",
+    "version": "demo",
+    "description": "Replace this demo with a non-npm project you want to feature.",
+    "featured": false
   }
 ]
