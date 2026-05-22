@@ -37,3 +37,14 @@
   <a href="https://www.threads.net/@aluc_pro" target="_blank"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" /></a>
   <a href="https://x.com/AlucPro" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a>
 </p>
+
+---
+
+### 🚀 𝙿𝚛𝚘𝚓𝚎𝚌𝚝𝚜
+
+<!-- PROJECTS:START -->
+| Project | Homepage | Stars | Forks | npm downloads | Version | Description |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| [tool-manage](https://github.com/AlucPro/tool-manage) | [Website](https://www.npmjs.com/package/@alucpro/tool-manage) | 2 | 0 | 758/mo | `0.2.3` | Manage local AI tool plugins and skills from the terminal. |
+| [pom-tool](https://github.com/AlucPro/pom-tool) | [Website](https://github.com/AlucPro/pom-tool) | 2 | 0 | 32/mo | `0.3.1` | A simple Pomodoro timer CLI for terminal focus sessions. |
+<!-- PROJECTS:END -->
