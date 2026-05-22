@@ -1,0 +1,18 @@
+[
+  {
+    "name": "tool-manage",
+    "repo": "AlucPro/tool-manage",
+    "npm": "@alucpro/tool-manage",
+    "homepage": "",
+    "description": "Manage local AI tool plugins and skills from the terminal.",
+    "featured": true
+  },
+  {
+    "name": "pom-tool",
+    "repo": "AlucPro/pom-tool",
+    "npm": "pom-tool",
+    "homepage": "",
+    "description": "A simple Pomodoro timer CLI for terminal focus sessions.",
+    "featured": true
+  }
+]

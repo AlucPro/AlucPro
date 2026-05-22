@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 
-import { updateProjectsTable } from "../scripts/update-projects-table.mjs";
+import { resolveProjectsPath, updateProjectsTable } from "../scripts/update-projects-table.mjs";
 
 test("updates only the README projects marker block with GitHub and npm data", async () => {
   const dir = await mkdtemp(join(tmpdir(), "projects-table-"));
@@ -85,6 +85,21 @@ test("updates only the README projects marker block with GitHub and npm data", a
   );
   assert.doesNotMatch(readme, /old content/);
   assert.doesNotMatch(readme, /Hidden/);
+});
+
+test("uses PROJECTS_FILE as the default project config path", () => {
+  const previous = process.env.PROJECTS_FILE;
+  process.env.PROJECTS_FILE = "projects.v4.json";
+
+  try {
+    assert.equal(resolveProjectsPath().toString(), "projects.v4.json");
+  } finally {
+    if (previous === undefined) {
+      delete process.env.PROJECTS_FILE;
+    } else {
+      process.env.PROJECTS_FILE = previous;
+    }
+  }
 });
 
 function jsonResponse(body) {

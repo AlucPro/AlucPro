@@ -19,7 +19,7 @@ if (token) {
 
 export async function updateProjectsTable({
   readmePath = DEFAULT_README,
-  projectsPath = DEFAULT_PROJECTS,
+  projectsPath = resolveProjectsPath(),
   fetchImpl = fetch,
 } = {}) {
   const [readme, projectJson] = await Promise.all([
@@ -37,6 +37,10 @@ export async function updateProjectsTable({
 
   await writeFile(readmePath, nextReadme);
   return { updated: true, rows };
+}
+
+export function resolveProjectsPath() {
+  return process.env.PROJECTS_FILE || DEFAULT_PROJECTS;
 }
 
 export async function buildProjectRow(project, fetchImpl = fetch) {

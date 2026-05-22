@@ -19,6 +19,7 @@ jobs:
       - name: Update projects table
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECTS_FILE: projects.v4.json
         run: node scripts/update-projects-table.mjs
       - name: Commit changes
         run: |
