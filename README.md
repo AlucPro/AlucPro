@@ -23,7 +23,7 @@
 ### 📊 𝙶𝚒𝚝𝙷𝚞𝚋 𝚂𝚝𝚊𝚝𝚜
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=AlucPro&show_icons=true" alt="GitHub Stats">
+  <img src="./assets/github-stats.svg" alt="GitHub Stats">
 </p>
 
 ---
