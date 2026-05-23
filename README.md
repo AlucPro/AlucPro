@@ -45,8 +45,8 @@
 <!-- PROJECTS:START -->
 | Project | Homepage | Stars | Forks | Downloads | Version | Description |
 | --- | --- | ---: | ---: | ---: | --- | --- |
-| [tool-manage](https://github.com/AlucPro/tool-manage) | [Website](https://www.npmjs.com/package/@alucpro/tool-manage) | 2 | 0 | 1.3k total | `0.2.3` | Manage local AI tool plugins and skills from the terminal. |
+| [tool-manage](https://github.com/AlucPro/tool-manage) | [Website](https://www.npmjs.com/package/@alucpro/tool-manage) | 3 | 0 | 1.3k total | `0.2.3` | Manage local AI tool plugins and skills from the terminal. |
 | [pom-tool](https://github.com/AlucPro/pom-tool) | [Website](https://github.com/AlucPro/pom-tool) | 2 | 0 | 526 total | `0.3.1` | A simple Pomodoro timer CLI for terminal focus sessions. |
 | [Logseq LeetCode](https://github.com/AlucPro/logseq-plugin-leetcode) | - | 9 | 0 | 699 total | - | A Logseq plugin that batch fetches LeetCode problems. |
-| [LexiNote](https://github.com/AlucPro/obsidian-lexinote) | [Website](https://dg.aluc.me/Projects/OBSIDIAN-LEXINOTE) | 3 | 0 | 51 total | - | An Obsidian plugin for LexiNote. |
+| [LexiNote](https://github.com/AlucPro/obsidian-lexinote) | [Website](https://dg.aluc.me/Projects/OBSIDIAN-LEXINOTE) | 3 | 0 | 53 total | - | An Obsidian plugin for LexiNote. |
 <!-- PROJECTS:END -->
