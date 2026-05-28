@@ -2,9 +2,7 @@
 <h3 align="center">𝙵𝚞𝚕𝚕-𝚂𝚝𝚊𝚌𝚔 𝙴𝚗𝚐𝚒𝚗𝚎𝚎𝚛 𝚋𝚞𝚒𝚕𝚍𝚒𝚗𝚐 𝚝𝚘𝚘𝚕𝚜 𝚊𝚗𝚍 𝙰𝙸 𝚙𝚛𝚘𝚍𝚞𝚌𝚝𝚜.</h3>
 
 <p align="center">
-  <a href="https://rollingsagas.com" target="_blank">
-    <img src="https://img.shields.io/badge/🎮 Rolling%20Sagas-AI%20Game-blueviolet?style=for-the-badge" alt="Rolling Sagas">
-  </a>
+  <a href="https://rollingsagas.com" target="_blank"><img src="https://img.shields.io/badge/🎮 Rolling%20Sagas-AI%20Game-blueviolet?style=for-the-badge" alt="Rolling Sagas"></a>
   <img src="https://img.shields.io/badge/Code-JavaScript-informational?style=for-the-badge&logo=javascript&logoColor=white" />
   <img src="https://img.shields.io/badge/Code-Go-informational?style=for-the-badge&logo=go&logoColor=white" />
 </p>
