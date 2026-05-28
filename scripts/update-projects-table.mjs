@@ -217,7 +217,7 @@ async function fetchJson(fetchImpl, url, { optional = false } = {}) {
 }
 
 function link(label, url) {
-  return `[${escapeMarkdownCell(label)}](${url})`;
+  return `<a href="${escapeHtmlAttribute(url)}" target="_blank">${escapeHtml(label)}</a>`;
 }
 
 function escapeMarkdownCell(value) {
@@ -226,6 +226,17 @@ function escapeMarkdownCell(value) {
     .replaceAll("|", "\\|")
     .replaceAll("\n", " ")
     .trim();
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function escapeHtmlAttribute(value) {
+  return escapeHtml(value).replaceAll('"', "&quot;");
 }
 
 function formatInteger(value) {

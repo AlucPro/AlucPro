@@ -157,19 +157,19 @@ test("updates only the README projects marker block with GitHub and npm data", a
   assert.doesNotMatch(readme, /\| # \| Project \| Homepage \| Stars \| Forks \| Downloads \| Version \| Description \|/);
   assert.match(
     readme,
-    /\| <img src="\.\/icon\/badge-npm\.svg" alt="npm" width="28"> \| \[tool-manage\]\(https:\/\/github\.com\/AlucPro\/tool-manage\) \| \[Website\]\(https:\/\/tool\.aluc\.pro\) \| 12 \| 12\.3k total \| `1\.2\.3` \| Manage local AI tool plugins and skills from the terminal\. \|/,
+    /\| <img src="\.\/icon\/badge-npm\.svg" alt="npm" width="28"> \| <a href="https:\/\/github\.com\/AlucPro\/tool-manage" target="_blank">tool-manage<\/a> \| <a href="https:\/\/tool\.aluc\.pro" target="_blank">Website<\/a> \| 12 \| 12\.3k total \| `1\.2\.3` \| Manage local AI tool plugins and skills from the terminal\. \|/,
   );
   assert.match(
     readme,
-    /\| <img src="\.\/icon\/badge-project\.svg" alt="project" width="28"> \| \[Rolling Sagas\]\(https:\/\/rollingsagas\.com\) \| \[Website\]\(https:\/\/rollingsagas\.com\) \| manual \| - \| live \| Demo non-npm project configured by hand\. \|/,
+    /\| <img src="\.\/icon\/badge-project\.svg" alt="project" width="28"> \| <a href="https:\/\/rollingsagas\.com" target="_blank">Rolling Sagas<\/a> \| <a href="https:\/\/rollingsagas\.com" target="_blank">Website<\/a> \| manual \| - \| live \| Demo non-npm project configured by hand\. \|/,
   );
   assert.match(
     readme,
-    /\| <img src="\.\/icon\/badge-obsidian\.svg" alt="obsidian" width="28"> \| \[LexiNote\]\(https:\/\/github\.com\/AlucPro\/obsidian-lexinote\) \| - \| 7 \| 4\.6k total \| - \| Demo Obsidian plugin\. \|/,
+    /\| <img src="\.\/icon\/badge-obsidian\.svg" alt="obsidian" width="28"> \| <a href="https:\/\/github\.com\/AlucPro\/obsidian-lexinote" target="_blank">LexiNote<\/a> \| - \| 7 \| 4\.6k total \| - \| Demo Obsidian plugin\. \|/,
   );
   assert.match(
     readme,
-    /\| <img src="\.\/icon\/badge-logseq\.svg" alt="logseq" width="28"> \| \[Logseq LeetCode\]\(https:\/\/github\.com\/AlucPro\/logseq-plugin-leetcode\) \| - \| 9 \| 699 total \| - \| Demo Logseq plugin\. \|/,
+    /\| <img src="\.\/icon\/badge-logseq\.svg" alt="logseq" width="28"> \| <a href="https:\/\/github\.com\/AlucPro\/logseq-plugin-leetcode" target="_blank">Logseq LeetCode<\/a> \| - \| 9 \| 699 total \| - \| Demo Logseq plugin\. \|/,
   );
   assert.doesNotMatch(readme, /old content/);
   assert.doesNotMatch(readme, /Hidden/);
