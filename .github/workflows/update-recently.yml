@@ -1,0 +1,40 @@
+name: Update Recently
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "39 2 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - name: Update recent WakaTime stats
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_TIMEZONE: Asia/Shanghai
+          RECENTLY_LANG_LIMIT: 10
+        run: |
+          if [ -z "$WAKATIME_API_KEY" ]; then
+            echo "WAKATIME_API_KEY is not configured; skipping Recently update."
+            exit 0
+          fi
+          node scripts/update-recently.mjs
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "No README changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "chore: update recently stats"
+          git push
