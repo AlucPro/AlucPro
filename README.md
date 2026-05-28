@@ -18,41 +18,24 @@
 - 🌐 𝙸 𝚠𝚛𝚒𝚝𝚎 𝚊𝚋𝚘𝚞𝚝 𝚝𝚎𝚌𝚑, 𝚐𝚊𝚖𝚎𝚜, 𝚊𝚗𝚍 𝚕𝚒𝚏𝚎 𝚘𝚗 𝚖𝚢 [𝙱𝚕𝚘𝚐](https://dg.aluc.me/)
 - 📫 𝚁𝚎𝚊𝚌𝚑 𝚘𝚞𝚝 𝚝𝚘 𝚖𝚎 𝚟𝚒𝚊 [𝙻𝚒𝚗𝚔𝚎𝚍𝙸𝚗](https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/)
 
-<!-- ---
-
-### 📊 𝙶𝚒𝚝𝙷𝚞𝚋 𝚂𝚝𝚊𝚝𝚜
-
-<p align="center">
-  <img src="./assets/github-stats.svg" alt="GitHub Stats">
-</p> -->
-
 ---
 
 ### 🕒 𝚁𝚎𝚌𝚎𝚗𝚝𝚕𝚢
 
 <!-- RECENTLY:START -->
 
-**𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚜𝚙𝚎𝚗𝚝 𝚖𝚢 𝚝𝚒𝚖𝚎 𝚘𝚗:**
+**𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-No coding activity tracked this month.
+HTML             754.4 KB   ██████████████████░░░░░░░  71.79 %
+TypeScript       169.1 KB   ████░░░░░░░░░░░░░░░░░░░░░  16.09 %
+JavaScript       116.4 KB   ███░░░░░░░░░░░░░░░░░░░░░░  11.08 %
+CSS              11.0 KB    ░░░░░░░░░░░░░░░░░░░░░░░░░   1.05 %
+
+shipped          6 active repos · 60 commits · 3 releases
 ```
 
 <!-- RECENTLY:END -->
-
-<!-- ---
-
-### 🌐 𝙲𝚘𝚗𝚗𝚎𝚌𝚝 𝚠𝚒𝚝𝚑 𝙼𝚎
-
-<p align="center">
-  <a href="https://dg.aluc.me/" target="_blank"><img src="https://img.shields.io/badge/Blog-%23000000.svg?&style=for-the-badge&logo=ghost&logoColor=white" /></a>
-  <a href="https://www.linkedin.com/in/%E5%BE%90%E6%98%8E-%E9%87%91-b54815259/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="https://www.instagram.com/aluc_pro/" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" /></a>
-  <a href="https://www.threads.net/@aluc_pro" target="_blank"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" /></a>
-  <a href="https://x.com/AlucPro" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a>
-</p> -->
-
----
 
 ### 🚀 𝙿𝚛𝚘𝚓𝚎𝚌𝚝𝚜
 

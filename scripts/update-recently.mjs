@@ -4,102 +4,176 @@ import { fileURLToPath } from "node:url";
 const START_MARKER = "<!-- RECENTLY:START -->";
 const END_MARKER = "<!-- RECENTLY:END -->";
 const DEFAULT_README = new URL("../README.md", import.meta.url);
-const WAKATIME_SUMMARIES_URL = "https://api.wakatime.com/api/v1/users/current/summaries";
+const GITHUB_API_URL = "https://api.github.com";
 const BAR_WIDTH = 25;
+
+const username =
+  process.env.GITHUB_USERNAME ||
+  process.env.GITHUB_REPOSITORY?.split("/")[0] ||
+  "AlucPro";
 
 export async function updateRecently({
   readmePath = DEFAULT_README,
-  apiKey = process.env.WAKATIME_API_KEY,
   fetchImpl = fetch,
   today = new Date(),
   languageLimit = Number(process.env.RECENTLY_LANG_LIMIT || 10),
-  timezone = process.env.WAKATIME_TIMEZONE || "Asia/Shanghai",
+  token = process.env.PROFILE_STATS_TOKEN || process.env.GITHUB_TOKEN,
+  username: targetUsername = username,
 } = {}) {
   const readme = await readFile(readmePath, "utf8");
-  const block = apiKey
-    ? renderRecentlyBlock(
-        aggregateLanguages(
-          await fetchWakaTimeSummaries({ apiKey, fetchImpl, today, timezone }),
-        ),
-        { languageLimit },
-      )
-    : renderRecentlyBlock([], { languageLimit });
+  const summary = await buildRecentlySummary({
+    fetchImpl,
+    today,
+    token,
+    username: targetUsername,
+  });
+  const block = renderRecentlyBlock(summary, { languageLimit });
   const nextReadme = replaceRecentlyBlock(readme, block);
 
   if (nextReadme === readme) {
-    return { updated: false };
+    return { updated: false, summary };
   }
 
   await writeFile(readmePath, nextReadme);
-  return { updated: true };
+  return { updated: true, summary };
 }
 
-export async function fetchWakaTimeSummaries({
-  apiKey,
+export async function buildRecentlySummary({
   fetchImpl = fetch,
   today = new Date(),
-  timezone = "Asia/Shanghai",
-}) {
-  if (!apiKey) {
-    throw new Error("WAKATIME_API_KEY is required to update Recently.");
+  token = process.env.PROFILE_STATS_TOKEN || process.env.GITHUB_TOKEN,
+  username: targetUsername = username,
+} = {}) {
+  if (!token) {
+    throw new Error("PROFILE_STATS_TOKEN or GITHUB_TOKEN is required to read repositories.");
   }
 
-  const end = formatDate(today);
-  const start = formatDate(addDays(today, -29));
-  const url = new URL(WAKATIME_SUMMARIES_URL);
-  url.searchParams.set("start", start);
-  url.searchParams.set("end", end);
-  url.searchParams.set("timezone", timezone);
+  const end = new Date(today);
+  const start = addDays(end, -29);
+  const activeRepos = (await listRepos({ fetchImpl, token }))
+    .filter((repo) => !repo.fork && !repo.archived)
+    .filter((repo) => new Date(repo.updated_at) >= start);
 
-  const response = await fetchImpl(url.toString(), {
+  const languageEntries = [];
+  let commits = 0;
+  let releases = 0;
+
+  await Promise.all(
+    activeRepos.map(async (repo) => {
+      const [languages, repoCommits, repoReleases] = await Promise.all([
+        github(fetchImpl, `/repos/${repo.full_name}/languages`, { token }),
+        listCommits({ fetchImpl, repo: repo.full_name, start, end, token }),
+        listReleases({ fetchImpl, repo: repo.full_name, start, token }),
+      ]);
+
+      for (const [language, bytes] of Object.entries(languages)) {
+        languageEntries.push([language, bytes]);
+      }
+
+      commits += repoCommits.length;
+      releases += repoReleases.length;
+    }),
+  );
+
+  return {
+    languages: aggregateLanguages(languageEntries),
+    stats: {
+      activeRepos: activeRepos.length,
+      commits,
+      releases,
+    },
+  };
+}
+
+async function listRepos({ fetchImpl, token }) {
+  const repos = [];
+  let page = 1;
+
+  while (true) {
+    const batch = await github(
+      fetchImpl,
+      `/user/repos?visibility=all&affiliation=owner&sort=updated&per_page=100&page=${page}`,
+      { token },
+    );
+    repos.push(...batch);
+
+    if (batch.length < 100) {
+      return repos;
+    }
+
+    page += 1;
+  }
+}
+
+async function listCommits({ fetchImpl, repo, start, end, token }) {
+  return github(
+    fetchImpl,
+    `/repos/${repo}/commits?since=${encodeURIComponent(start.toISOString())}&until=${encodeURIComponent(end.toISOString())}&per_page=100`,
+    { token, optional404: true },
+  );
+}
+
+async function listReleases({ fetchImpl, repo, start, token }) {
+  const releases = await github(fetchImpl, `/repos/${repo}/releases?per_page=100`, {
+    token,
+    optional404: true,
+  });
+
+  return releases.filter((release) => new Date(release.published_at || release.created_at) >= start);
+}
+
+async function github(fetchImpl, path, { token, optional404 = false } = {}) {
+  const response = await fetchImpl(`${GITHUB_API_URL}${path}`, {
     headers: {
-      Accept: "application/json",
-      Authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`,
+      Accept: "application/vnd.github+json",
       "User-Agent": "alucpro-readme-recently",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
   });
 
   if (!response.ok) {
+    if (optional404 && response.status === 404) {
+      return [];
+    }
+
     const body = await response.text();
-    throw new Error(`WakaTime API ${response.status}: ${body}`);
+    throw new Error(`GitHub API ${response.status} for ${path}: ${body}`);
   }
 
-  const payload = await response.json();
-  return payload.data || [];
+  return response.json();
 }
 
-export function aggregateLanguages(summaries) {
+export function aggregateLanguages(entries) {
   const totals = new Map();
 
-  for (const summary of summaries) {
-    for (const language of summary.languages || []) {
-      const name = language.name || "Other";
-      const seconds = Number(language.total_seconds ?? language.seconds ?? 0);
-      totals.set(name, (totals.get(name) || 0) + seconds);
-    }
+  for (const [name, bytes] of entries) {
+    totals.set(name, (totals.get(name) || 0) + Number(bytes || 0));
   }
 
-  const totalSeconds = [...totals.values()].reduce((sum, seconds) => sum + seconds, 0);
+  const totalBytes = [...totals.values()].reduce((sum, bytes) => sum + bytes, 0);
 
   return [...totals.entries()]
-    .map(([name, seconds]) => ({
+    .map(([name, bytes]) => ({
       name,
-      totalSeconds: seconds,
-      percent: totalSeconds > 0 ? (seconds / totalSeconds) * 100 : 0,
+      bytes,
+      percent: totalBytes > 0 ? (bytes / totalBytes) * 100 : 0,
     }))
-    .sort((a, b) => b.totalSeconds - a.totalSeconds);
+    .sort((a, b) => b.bytes - a.bytes);
 }
 
-export function renderRecentlyBlock(languages, { languageLimit = 10 } = {}) {
-  const rows = languages.slice(0, languageLimit);
-  const content = rows.length
-    ? rows.map(formatLanguageRow).join("\n")
-    : "No coding activity tracked this month.";
+export function renderRecentlyBlock(summary, { languageLimit = 10 } = {}) {
+  const languages = summary.languages.slice(0, languageLimit);
+  const languageRows = languages.length
+    ? languages.map(formatLanguageRow).join("\n")
+    : "No GitHub language activity tracked this month.";
 
-  return `**this month i spent my time on:**
+  return `**𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 \`\`\`txt
-${content}
+${languageRows}
+
+shipped          ${formatCount(summary.stats.activeRepos, "active repo")} · ${formatCount(summary.stats.commits, "commit")} · ${formatCount(summary.stats.releases, "release")}
 \`\`\``;
 }
 
@@ -119,26 +193,22 @@ export function replaceRecentlyBlock(readme, block) {
 function formatLanguageRow(language) {
   return [
     language.name.padEnd(16),
-    formatDuration(language.totalSeconds).padEnd(14),
+    formatBytes(language.bytes).padEnd(10),
     progressBar(language.percent),
     `${language.percent.toFixed(2).padStart(6)} %`,
   ].join(" ");
 }
 
-function formatDuration(totalSeconds) {
-  const totalMinutes = Math.round(totalSeconds / 60);
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  if (hours === 0) {
-    return `${minutes} min${minutes === 1 ? "" : "s"}`;
+function formatBytes(bytes) {
+  if (bytes < 1024) {
+    return `${bytes} B`;
   }
 
-  if (minutes === 0) {
-    return `${hours} hr${hours === 1 ? "" : "s"}`;
-  }
+  return `${(bytes / 1024).toFixed(1)} KB`;
+}
 
-  return `${hours} hr${hours === 1 ? "" : "s"} ${minutes} min${minutes === 1 ? "" : "s"}`;
+function formatCount(value, label) {
+  return `${value} ${label}${value === 1 ? "" : "s"}`;
 }
 
 function progressBar(percent) {
@@ -150,10 +220,6 @@ function addDays(date, days) {
   const next = new Date(date);
   next.setUTCDate(next.getUTCDate() + days);
   return next;
-}
-
-function formatDate(date) {
-  return date.toISOString().slice(0, 10);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
