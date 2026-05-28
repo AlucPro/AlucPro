@@ -26,7 +26,7 @@
   <img src="./assets/github-stats.svg" alt="GitHub Stats">
 </p>
 
----
+<!-- ---
 
 ### 🌐 𝙲𝚘𝚗𝚗𝚎𝚌𝚝 𝚠𝚒𝚝𝚑 𝙼𝚎
 
@@ -36,17 +36,17 @@
   <a href="https://www.instagram.com/aluc_pro/" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" /></a>
   <a href="https://www.threads.net/@aluc_pro" target="_blank"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" /></a>
   <a href="https://x.com/AlucPro" target="_blank"><img src="https://img.shields.io/badge/Twitter-%231DA1F2.svg?&style=for-the-badge&logo=twitter&logoColor=white" /></a>
-</p>
+</p> -->
 
 ---
 
 ### 🚀 𝙿𝚛𝚘𝚓𝚎𝚌𝚝𝚜
 
 <!-- PROJECTS:START -->
-| Project | Homepage | Stars | Forks | Downloads | Version | Description |
-| --- | --- | ---: | ---: | ---: | --- | --- |
-| [tool-manage](https://github.com/AlucPro/tool-manage) | [Website](https://www.npmjs.com/package/@alucpro/tool-manage) | 3 | 0 | 1.3k total | `0.2.3` | Manage local AI tool plugins and skills from the terminal. |
-| [pom-tool](https://github.com/AlucPro/pom-tool) | [Website](https://github.com/AlucPro/pom-tool) | 2 | 0 | 532 total | `0.3.1` | A simple Pomodoro timer CLI for terminal focus sessions. |
-| [Logseq LeetCode](https://github.com/AlucPro/logseq-plugin-leetcode) | - | 9 | 0 | 699 total | - | A Logseq plugin that batch fetches LeetCode problems. |
-| [LexiNote](https://github.com/AlucPro/obsidian-lexinote) | [Website](https://dg.aluc.me/Projects/OBSIDIAN-LEXINOTE) | 3 | 0 | 63 total | - | An Obsidian plugin for LexiNote. |
+| # | Project | Homepage | Stars | Downloads | Version | Description |
+| --- | --- | --- | ---: | ---: | --- | --- |
+| <img src="./icon/badge-npm.svg" alt="npm" width="28"> | [tool-manage](https://github.com/AlucPro/tool-manage) | [Website](https://www.npmjs.com/package/@alucpro/tool-manage) | 3 | 1.3k total | `0.2.3` | A sqlite-backed local registry for managing CLI tools, scripts, and internal commands. |
+| <img src="./icon/badge-npm.svg" alt="npm" width="28"> | [pom-tool](https://github.com/AlucPro/pom-tool) | [Website](https://github.com/AlucPro/pom-tool) | 2 | 532 total | `0.3.1` | A simple Pomodoro timer CLI for terminal focus sessions. |
+| <img src="./icon/badge-logseq.svg" alt="logseq" width="28"> | [logseq-plugin-leetcode](https://github.com/AlucPro/logseq-plugin-leetcode) | - | 9 | 699 total | - | A Logseq plugin that batch fetches LeetCode problems. |
+| <img src="./icon/badge-obsidian.svg" alt="obsidian" width="28"> | [obsidian-lexinote](https://github.com/AlucPro/obsidian-lexinote) | [Website](https://dg.aluc.me/Projects/OBSIDIAN-LEXINOTE) | 3 | 63 total | - | An Obsidian plugin for LexiNote. |
 <!-- PROJECTS:END -->

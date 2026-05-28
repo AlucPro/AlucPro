@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 28 28" width="28" height="28">
+  <title>Obsidian</title>
+  <rect width="28" height="28" rx="4" fill="#7c3aed"/>
+  <path fill="#c4b5fd" d="M13.6 3.5 22 9.4l-2.2 11.3-6.8 3.8-7-5.1L7.7 8z"/>
+  <path fill="#fff" d="m13.6 3.5-1.9 8.1L7.7 8zm0 0 2.8 8.8L22 9.4zm-1.9 8.1 4.7.7-3.4 12.2-7-5.1zm4.7.7 3.4 8.4-6.8 3.8z"/>
+</svg>

@@ -49,7 +49,7 @@ export function resolveProjectsPath() {
 export async function buildProjectRow(project, fetchImpl = fetch) {
   const type = project.type || "npm";
 
-  if (type === "project") {
+  if (type === "project" || type === "ai-project") {
     return buildManualProjectRow(project);
   }
 
@@ -70,6 +70,7 @@ export async function buildProjectRow(project, fetchImpl = fetch) {
   const homepage = project.homepage || repo.homepage || "";
 
   return {
+    type,
     name: project.name,
     repoUrl: repo.html_url || `https://github.com/${project.repo}`,
     homepage,
@@ -89,6 +90,7 @@ async function buildPluginProjectRow(project, fetchImpl, fetchDownloads) {
   const homepage = project.homepage || repo.homepage || "";
 
   return {
+    type: project.type,
     name: project.name,
     repoUrl: repo.html_url || `https://github.com/${project.repo}`,
     homepage,
@@ -104,6 +106,7 @@ async function buildPluginProjectRow(project, fetchImpl, fetchDownloads) {
 
 function buildManualProjectRow(project) {
   return {
+    type: project.type || "project",
     name: project.name,
     repoUrl: project.url || project.repoUrl || project.homepage || "",
     homepage: project.homepage || "",
@@ -119,15 +122,15 @@ function buildManualProjectRow(project) {
 
 export function renderTable(rows) {
   const header = [
-    ["Project", "Homepage", "Stars", "Forks", "Downloads", "Version", "Description"],
-    ["---", "---", "---:", "---:", "---:", "---", "---"],
+    ["#", "Project", "Homepage", "Stars", "Downloads", "Version", "Description"],
+    ["---", "---", "---", "---:", "---:", "---", "---"],
   ];
   const body = rows.map((row) =>
     [
+      projectTypeIcon(row.type),
       link(row.name, row.repoUrl),
       row.homepage ? link("Website", row.homepage) : "-",
       formatMetric(row.stars),
-      formatMetric(row.forks),
       escapeMarkdownCell(row.downloadsLabel ?? (row.downloads === null ? "-" : `${formatCompact(row.downloads)} total`)),
       escapeMarkdownCell(row.versionLabel ?? formatVersion(row.version)),
       escapeMarkdownCell(row.description),
@@ -135,6 +138,19 @@ export function renderTable(rows) {
   );
 
   return [...header, ...body].map((cells) => `| ${cells.join(" | ")} |`).join("\n");
+}
+
+function projectTypeIcon(type = "project") {
+  const normalizedType = type === "ai-project" ? "project" : type;
+  const icons = {
+    "logseq-plugin": { label: "logseq", path: "./icon/badge-logseq.svg" },
+    "obsidian-plugin": { label: "obsidian", path: "./icon/badge-obsidian.svg" },
+    npm: { label: "npm", path: "./icon/badge-npm.svg" },
+    project: { label: "project", path: "./icon/badge-project.svg" },
+  };
+  const icon = icons[normalizedType] || icons.project;
+
+  return `<img src="${icon.path}" alt="${icon.label}" width="28">`;
 }
 
 export function replaceProjectsBlock(readme, table) {

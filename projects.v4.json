@@ -5,7 +5,7 @@
     "repo": "AlucPro/tool-manage",
     "npm": "@alucpro/tool-manage",
     "homepage": "",
-    "description": "Manage local AI tool plugins and skills from the terminal.",
+    "description": "A sqlite-backed local registry for managing CLI tools, scripts, and internal commands.",
     "featured": true
   },
   {
@@ -19,7 +19,7 @@
   },
   {
     "type": "logseq-plugin",
-    "name": "Logseq LeetCode",
+    "name": "logseq-plugin-leetcode",
     "repo": "AlucPro/logseq-plugin-leetcode",
     "pluginId": "logseq-plugin-leetcode",
     "homepage": "",
@@ -28,7 +28,7 @@
   },
   {
     "type": "obsidian-plugin",
-    "name": "LexiNote",
+    "name": "obsidian-lexinote",
     "repo": "AlucPro/obsidian-lexinote",
     "pluginId": "lexinote",
     "homepage": "",

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 28 28" width="28" height="28">
+  <title>npm</title>
+  <rect width="28" height="28" rx="4" fill="#cb3837"/>
+  <path fill="#fff" d="M6 8h16v12h-4V12h-4v8H6z"/>
+  <path fill="#cb3837" d="M10 12h4v4h-4z"/>
+</svg>
