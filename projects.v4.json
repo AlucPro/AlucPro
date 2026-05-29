@@ -22,7 +22,7 @@
     "name": "logseq-plugin-leetcode",
     "repo": "AlucPro/logseq-plugin-leetcode",
     "pluginId": "logseq-plugin-leetcode",
-    "homepage": "",
+    "homepage": "https://github.com/AlucPro/logseq-plugin-leetcode",
     "description": "A Logseq plugin that batch fetches LeetCode problems.",
     "featured": true
   },
