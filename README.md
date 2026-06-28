@@ -21,18 +21,18 @@
 ### 🕒 𝚁𝚎𝚌𝚎𝚗𝚝𝚕𝚢
 
 <!-- RECENTLY:START -->
-
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-HTML             754.4 KB   ██████████████████░░░░░░░  71.79 %
-TypeScript       169.1 KB   ████░░░░░░░░░░░░░░░░░░░░░  16.09 %
-JavaScript       116.4 KB   ███░░░░░░░░░░░░░░░░░░░░░░  11.08 %
-CSS              11.0 KB    ░░░░░░░░░░░░░░░░░░░░░░░░░   1.05 %
+JSON             47.6k lines ███████████████████░░░░░░  75.06 %
+Markdown         9.5k lines ████░░░░░░░░░░░░░░░░░░░░░  15.01 %
+TypeScript       4.3k lines ██░░░░░░░░░░░░░░░░░░░░░░░   6.80 %
+CSS              1.3k lines █░░░░░░░░░░░░░░░░░░░░░░░░   2.02 %
+JavaScript       696 lines  ░░░░░░░░░░░░░░░░░░░░░░░░░   1.10 %
+Shell            11 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.02 %
 
-shipped          6 active repos · 60 commits · 3 releases
+shipped          12 active repos · 43 commits · 5 releases
 ```
-
 <!-- RECENTLY:END -->
 
 
