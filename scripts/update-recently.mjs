@@ -6,6 +6,27 @@ const END_MARKER = "<!-- RECENTLY:END -->";
 const DEFAULT_README = new URL("../README.md", import.meta.url);
 const GITHUB_API_URL = "https://api.github.com";
 const BAR_WIDTH = 25;
+const EXCLUDED_LANGUAGES = new Set(["HTML"]);
+const LANGUAGE_BY_EXTENSION = new Map([
+  [".cjs", "JavaScript"],
+  [".css", "CSS"],
+  [".go", "Go"],
+  [".js", "JavaScript"],
+  [".jsx", "JavaScript"],
+  [".json", "JSON"],
+  [".mjs", "JavaScript"],
+  [".md", "Markdown"],
+  [".mdown", "Markdown"],
+  [".markdown", "Markdown"],
+  [".mdx", "Markdown"],
+  [".py", "Python"],
+  [".sh", "Shell"],
+  [".ts", "TypeScript"],
+  [".tsx", "TypeScript"],
+  [".vue", "Vue"],
+  [".yaml", "YAML"],
+  [".yml", "YAML"],
+]);
 
 const username =
   process.env.GITHUB_USERNAME ||
@@ -60,14 +81,31 @@ export async function buildRecentlySummary({
 
   await Promise.all(
     activeRepos.map(async (repo) => {
-      const [languages, repoCommits, repoReleases] = await Promise.all([
-        github(fetchImpl, `/repos/${repo.full_name}/languages`, { token }),
-        listCommits({ fetchImpl, repo: repo.full_name, start, end, token }),
+      const [repoCommits, repoReleases] = await Promise.all([
+        listCommits({
+          fetchImpl,
+          repo: repo.full_name,
+          start,
+          end,
+          token,
+          username: targetUsername,
+        }),
         listReleases({ fetchImpl, repo: repo.full_name, start, token }),
       ]);
 
-      for (const [language, bytes] of Object.entries(languages)) {
-        languageEntries.push([language, bytes]);
+      const commitFiles = await Promise.all(
+        repoCommits.map((commit) =>
+          listCommitFiles({ fetchImpl, repo: repo.full_name, sha: commit.sha, token }),
+        ),
+      );
+
+      for (const file of commitFiles.flat()) {
+        const language = languageForFile(file.filename);
+        if (!language || EXCLUDED_LANGUAGES.has(language)) {
+          continue;
+        }
+
+        languageEntries.push([language, Number(file.additions || 0) + Number(file.deletions || 0)]);
       }
 
       commits += repoCommits.length;
@@ -105,12 +143,21 @@ async function listRepos({ fetchImpl, token }) {
   }
 }
 
-async function listCommits({ fetchImpl, repo, start, end, token }) {
+async function listCommits({ fetchImpl, repo, start, end, token, username: targetUsername }) {
   return github(
     fetchImpl,
-    `/repos/${repo}/commits?since=${encodeURIComponent(start.toISOString())}&until=${encodeURIComponent(end.toISOString())}&per_page=100`,
+    `/repos/${repo}/commits?author=${encodeURIComponent(targetUsername)}&since=${encodeURIComponent(start.toISOString())}&until=${encodeURIComponent(end.toISOString())}&per_page=100`,
     { token, optional404: true },
   );
+}
+
+async function listCommitFiles({ fetchImpl, repo, sha, token }) {
+  const commit = await github(fetchImpl, `/repos/${repo}/commits/${sha}`, {
+    token,
+    optional404: true,
+  });
+
+  return commit.files || [];
 }
 
 async function listReleases({ fetchImpl, repo, start, token }) {
@@ -147,19 +194,19 @@ async function github(fetchImpl, path, { token, optional404 = false } = {}) {
 export function aggregateLanguages(entries) {
   const totals = new Map();
 
-  for (const [name, bytes] of entries) {
-    totals.set(name, (totals.get(name) || 0) + Number(bytes || 0));
+  for (const [name, lines] of entries) {
+    totals.set(name, (totals.get(name) || 0) + Number(lines || 0));
   }
 
-  const totalBytes = [...totals.values()].reduce((sum, bytes) => sum + bytes, 0);
+  const totalLines = [...totals.values()].reduce((sum, lines) => sum + lines, 0);
 
   return [...totals.entries()]
-    .map(([name, bytes]) => ({
+    .map(([name, lines]) => ({
       name,
-      bytes,
-      percent: totalBytes > 0 ? (bytes / totalBytes) * 100 : 0,
+      lines,
+      percent: totalLines > 0 ? (lines / totalLines) * 100 : 0,
     }))
-    .sort((a, b) => b.bytes - a.bytes);
+    .sort((a, b) => b.lines - a.lines);
 }
 
 export function renderRecentlyBlock(summary, { languageLimit = 10 } = {}) {
@@ -193,18 +240,18 @@ export function replaceRecentlyBlock(readme, block) {
 function formatLanguageRow(language) {
   return [
     language.name.padEnd(16),
-    formatBytes(language.bytes).padEnd(10),
+    formatChangedLines(language.lines).padEnd(10),
     progressBar(language.percent),
     `${language.percent.toFixed(2).padStart(6)} %`,
   ].join(" ");
 }
 
-function formatBytes(bytes) {
-  if (bytes < 1024) {
-    return `${bytes} B`;
+function formatChangedLines(lines) {
+  if (lines < 1000) {
+    return `${lines} ${lines === 1 ? "line" : "lines"}`;
   }
 
-  return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(lines / 1000).toFixed(1)}k lines`;
 }
 
 function formatCount(value, label) {
@@ -214,6 +261,19 @@ function formatCount(value, label) {
 function progressBar(percent) {
   const filled = Math.round((percent / 100) * BAR_WIDTH);
   return `${"█".repeat(filled)}${"░".repeat(BAR_WIDTH - filled)}`;
+}
+
+function languageForFile(filename = "") {
+  const normalized = filename.toLowerCase();
+  const extension = normalized.includes(".")
+    ? normalized.slice(normalized.lastIndexOf("."))
+    : "";
+
+  if (extension === ".html" || extension === ".htm") {
+    return "HTML";
+  }
+
+  return LANGUAGE_BY_EXTENSION.get(extension);
 }
 
 function addDays(date, days) {

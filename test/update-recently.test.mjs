@@ -11,7 +11,7 @@ import {
   updateRecently,
 } from "../scripts/update-recently.mjs";
 
-test("aggregates GitHub language bytes across active repositories", () => {
+test("aggregates language changes across authored commits", () => {
   const languages = aggregateLanguages([
     ["TypeScript", 12_000],
     ["Markdown", 3_000],
@@ -24,19 +24,19 @@ test("aggregates GitHub language bytes across active repositories", () => {
     "Markdown",
     "JSON",
   ]);
-  assert.equal(languages[0].bytes, 18_000);
+  assert.equal(languages[0].lines, 18_000);
   assert.equal(languages[0].percent.toFixed(2), "80.00");
 });
 
 test("renders a monthly built with and shipped block", () => {
   const block = renderRecentlyBlock({
     languages: [
-      { name: "TypeScript", bytes: 36_000, percent: 50 },
-      { name: "Markdown", bytes: 18_000, percent: 25 },
-      { name: "JSON", bytes: 7_200, percent: 10 },
-      { name: "JavaScript", bytes: 3_600, percent: 5 },
-      { name: "YAML", bytes: 1_800, percent: 2.5 },
-      { name: "CSS", bytes: 1_800, percent: 2.5 },
+      { name: "TypeScript", lines: 36_000, percent: 50 },
+      { name: "Markdown", lines: 18_000, percent: 25 },
+      { name: "JSON", lines: 7_200, percent: 10 },
+      { name: "JavaScript", lines: 3_600, percent: 5 },
+      { name: "YAML", lines: 1_800, percent: 2.5 },
+      { name: "CSS", lines: 1_800, percent: 2.5 },
     ],
     stats: {
       activeRepos: 3,
@@ -47,12 +47,12 @@ test("renders a monthly built with and shipped block", () => {
 
   assert.match(block, /\*\*𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:\*\*/);
   assert.match(block, /```txt/);
-  assert.match(block, /TypeScript\s+35\.2 KB\s+█████████████░░░░░░░░░░░░\s+50\.00 %/);
-  assert.match(block, /CSS\s+1\.8 KB/);
+  assert.match(block, /TypeScript\s+36\.0k lines\s+█████████████░░░░░░░░░░░░\s+50\.00 %/);
+  assert.match(block, /CSS\s+1\.8k lines/);
   assert.match(block, /shipped\s+3 active repos · 18 commits · 2 releases/);
 });
 
-test("builds GitHub-derived recently summary from active repositories", async () => {
+test("builds GitHub-derived recently summary from authored commit file changes", async () => {
   const calls = [];
   const fetchImpl = async (url, options = {}) => {
     calls.push({ url, options });
@@ -81,8 +81,13 @@ test("builds GitHub-derived recently summary from active repositories", async ()
       ]);
     }
 
-    if (url.includes("/repos/AlucPro/private-app/languages")) {
-      return jsonResponse({ JavaScript: 5_000 });
+    if (url.includes("/repos/AlucPro/private-app/commits/c")) {
+      return jsonResponse({
+        files: [
+          { filename: "src/private.js", additions: 4, deletions: 1 },
+          { filename: "docs/private.md", additions: 2, deletions: 1 },
+        ],
+      });
     }
 
     if (url.includes("/repos/AlucPro/private-app/commits")) {
@@ -93,8 +98,23 @@ test("builds GitHub-derived recently summary from active repositories", async ()
       return jsonResponse([]);
     }
 
-    if (url.includes("/repos/AlucPro/app/languages")) {
-      return jsonResponse({ TypeScript: 10_000, CSS: 2_000 });
+    if (url.includes("/repos/AlucPro/app/commits/a")) {
+      return jsonResponse({
+        files: [
+          { filename: "src/app.ts", additions: 10, deletions: 2 },
+          { filename: "README.md", additions: 5, deletions: 5 },
+          { filename: "public/index.html", additions: 500, deletions: 250 },
+        ],
+      });
+    }
+
+    if (url.includes("/repos/AlucPro/app/commits/b")) {
+      return jsonResponse({
+        files: [
+          { filename: "src/style.css", additions: 3, deletions: 0 },
+          { filename: "docs/guide.mdx", additions: 2, deletions: 0 },
+        ],
+      });
     }
 
     if (url.includes("/repos/AlucPro/app/commits")) {
@@ -118,10 +138,14 @@ test("builds GitHub-derived recently summary from active repositories", async ()
   assert.equal(summary.stats.activeRepos, 2);
   assert.equal(summary.stats.commits, 3);
   assert.equal(summary.stats.releases, 1);
-  assert.deepEqual(summary.languages.map((language) => language.name), ["TypeScript", "JavaScript", "CSS"]);
+  assert.deepEqual(summary.languages.map((language) => language.name), ["Markdown", "TypeScript", "JavaScript", "CSS"]);
+  assert.equal(summary.languages.find((language) => language.name === "Markdown")?.lines, 15);
+  assert.equal(summary.languages.some((language) => language.name === "HTML"), false);
   assert.ok(calls.some((call) => call.url.includes("/user/repos?visibility=all&affiliation=owner")));
   assert.ok(calls.every((call) => call.options.headers.Authorization === "Bearer profile-token"));
   assert.ok(calls.some((call) => call.url.includes("since=2026-04-29T00%3A00%3A00.000Z")));
+  assert.ok(calls.some((call) => call.url.includes("author=AlucPro")));
+  assert.equal(calls.some((call) => call.url.includes("/languages")), false);
 });
 
 test("updates only the README recently marker block", async () => {
@@ -154,8 +178,14 @@ test("updates only the README recently marker block", async () => {
       ]);
     }
 
-    if (url.includes("/repos/AlucPro/app/languages")) {
-      return jsonResponse({ TypeScript: 7200, Markdown: 1800 });
+    if (url.includes("/repos/AlucPro/app/commits/a")) {
+      return jsonResponse({
+        files: [
+          { filename: "src/app.ts", additions: 72, deletions: 0 },
+          { filename: "README.md", additions: 18, deletions: 0 },
+          { filename: "index.html", additions: 900, deletions: 0 },
+        ],
+      });
     }
 
     if (url.includes("/repos/AlucPro/app/commits")) {
@@ -182,8 +212,9 @@ test("updates only the README recently marker block", async () => {
   assert.match(readme, /before/);
   assert.match(readme, /after/);
   assert.doesNotMatch(readme, /old recently/);
-  assert.match(readme, /TypeScript\s+7\.0 KB/);
-  assert.match(readme, /Markdown\s+1\.8 KB/);
+  assert.match(readme, /TypeScript\s+72 lines/);
+  assert.match(readme, /Markdown\s+18 lines/);
+  assert.doesNotMatch(readme, /HTML/);
   assert.match(readme, /shipped\s+1 active repo · 1 commit · 0 releases/);
 });
 
