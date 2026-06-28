@@ -23,8 +23,8 @@ jobs:
           RECENTLY_LANG_LIMIT: 10
         run: |
           if [ -z "$PROFILE_STATS_TOKEN" ]; then
-            echo "PROFILE_STATS_TOKEN is not configured; skipping Recently update."
-            exit 0
+            echo "PROFILE_STATS_TOKEN is not configured; cannot update Recently stats."
+            exit 1
           fi
           node scripts/update-recently.mjs
       - name: Commit changes

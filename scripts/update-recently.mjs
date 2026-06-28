@@ -6,7 +6,7 @@ const END_MARKER = "<!-- RECENTLY:END -->";
 const DEFAULT_README = new URL("../README.md", import.meta.url);
 const GITHUB_API_URL = "https://api.github.com";
 const BAR_WIDTH = 25;
-const EXCLUDED_LANGUAGES = new Set(["HTML"]);
+const EXCLUDED_LANGUAGES = new Set(["CSS", "HTML", "JSON"]);
 const LANGUAGE_BY_EXTENSION = new Map([
   [".cjs", "JavaScript"],
   [".css", "CSS"],

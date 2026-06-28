@@ -112,6 +112,7 @@ test("builds GitHub-derived recently summary from authored commit file changes",
       return jsonResponse({
         files: [
           { filename: "src/style.css", additions: 3, deletions: 0 },
+          { filename: "package.json", additions: 8, deletions: 1 },
           { filename: "docs/guide.mdx", additions: 2, deletions: 0 },
         ],
       });
@@ -138,9 +139,11 @@ test("builds GitHub-derived recently summary from authored commit file changes",
   assert.equal(summary.stats.activeRepos, 2);
   assert.equal(summary.stats.commits, 3);
   assert.equal(summary.stats.releases, 1);
-  assert.deepEqual(summary.languages.map((language) => language.name), ["Markdown", "TypeScript", "JavaScript", "CSS"]);
+  assert.deepEqual(summary.languages.map((language) => language.name), ["Markdown", "TypeScript", "JavaScript"]);
   assert.equal(summary.languages.find((language) => language.name === "Markdown")?.lines, 15);
   assert.equal(summary.languages.some((language) => language.name === "HTML"), false);
+  assert.equal(summary.languages.some((language) => language.name === "CSS"), false);
+  assert.equal(summary.languages.some((language) => language.name === "JSON"), false);
   assert.ok(calls.some((call) => call.url.includes("/user/repos?visibility=all&affiliation=owner")));
   assert.ok(calls.every((call) => call.options.headers.Authorization === "Bearer profile-token"));
   assert.ok(calls.some((call) => call.url.includes("since=2026-04-29T00%3A00%3A00.000Z")));
@@ -184,6 +187,8 @@ test("updates only the README recently marker block", async () => {
           { filename: "src/app.ts", additions: 72, deletions: 0 },
           { filename: "README.md", additions: 18, deletions: 0 },
           { filename: "index.html", additions: 900, deletions: 0 },
+          { filename: "src/app.css", additions: 100, deletions: 0 },
+          { filename: "package.json", additions: 100, deletions: 0 },
         ],
       });
     }
@@ -215,6 +220,8 @@ test("updates only the README recently marker block", async () => {
   assert.match(readme, /TypeScript\s+72 lines/);
   assert.match(readme, /Markdown\s+18 lines/);
   assert.doesNotMatch(readme, /HTML/);
+  assert.doesNotMatch(readme, /CSS/);
+  assert.doesNotMatch(readme, /JSON/);
   assert.match(readme, /shipped\s+1 active repo · 1 commit · 0 releases/);
 });
 
