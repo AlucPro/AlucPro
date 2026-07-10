@@ -24,13 +24,13 @@
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-Markdown         9.3k lines ███████████████████░░░░░░  77.26 %
-TypeScript       2.0k lines ████░░░░░░░░░░░░░░░░░░░░░  16.93 %
-JavaScript       681 lines  █░░░░░░░░░░░░░░░░░░░░░░░░   5.68 %
-Shell            11 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.09 %
-YAML             4 lines    ░░░░░░░░░░░░░░░░░░░░░░░░░   0.03 %
+Markdown         9.3k lines ██████████████████████░░░  88.36 %
+JavaScript       650 lines  ██░░░░░░░░░░░░░░░░░░░░░░░   6.20 %
+TypeScript       555 lines  █░░░░░░░░░░░░░░░░░░░░░░░░   5.30 %
+Shell            11 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.10 %
+YAML             4 lines    ░░░░░░░░░░░░░░░░░░░░░░░░░   0.04 %
 
-shipped          12 active repos · 43 commits · 3 releases
+shipped          11 active repos · 40 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
