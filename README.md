@@ -25,10 +25,10 @@
 
 ```txt
 Markdown         1.9k lines ███████████████████████░░  91.09 %
-JavaScript       180 lines  ██░░░░░░░░░░░░░░░░░░░░░░░   8.71 %
+JavaScript       180 lines  ██░░░░░░░░░░░░░░░░░░░░░░░   8.72 %
 YAML             4 lines    ░░░░░░░░░░░░░░░░░░░░░░░░░   0.19 %
 
-shipped          8 active repos · 24 commits · 0 releases
+shipped          7 active repos · 23 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
