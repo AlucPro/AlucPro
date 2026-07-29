@@ -26,7 +26,7 @@
 ```txt
 Markdown         1.5k lines █████████████████████████ 100.00 %
 
-shipped          5 active repos · 14 commits · 0 releases
+shipped          5 active repos · 12 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
