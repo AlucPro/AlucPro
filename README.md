@@ -24,9 +24,9 @@
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-Markdown         1.5k lines █████████████████████████ 100.00 %
+Markdown         1.4k lines █████████████████████████ 100.00 %
 
-shipped          5 active repos · 12 commits · 0 releases
+shipped          4 active repos · 10 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
