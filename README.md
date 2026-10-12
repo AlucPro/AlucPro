@@ -24,10 +24,10 @@
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-Markdown         7.6k lines ████████████████████████░  94.55 %
-Python           436 lines  █░░░░░░░░░░░░░░░░░░░░░░░░   5.45 %
+Markdown         9.5k lines ███████████████████████░░  91.42 %
+Python           887 lines  ██░░░░░░░░░░░░░░░░░░░░░░░   8.58 %
 
-shipped          6 active repos · 12 commits · 0 releases
+shipped          6 active repos · 13 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
