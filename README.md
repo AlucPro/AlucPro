@@ -27,7 +27,7 @@
 Markdown         9.7k lines ██████████████████████░░░  89.82 %
 Python           1.1k lines ███░░░░░░░░░░░░░░░░░░░░░░  10.18 %
 
-shipped          4 active repos · 10 commits · 0 releases
+shipped          5 active repos · 10 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
