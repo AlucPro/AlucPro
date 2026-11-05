@@ -24,12 +24,12 @@
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-Markdown         12.1k lines ██████████████████████░░░  89.96 %
-Python           1.1k lines ██░░░░░░░░░░░░░░░░░░░░░░░   8.19 %
-JavaScript       236 lines  ░░░░░░░░░░░░░░░░░░░░░░░░░   1.75 %
-Shell            13 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.10 %
+Markdown         14.8k lines ████████████████░░░░░░░░░  65.99 %
+JavaScript       6.5k lines ███████░░░░░░░░░░░░░░░░░░  29.04 %
+Python           1.1k lines █░░░░░░░░░░░░░░░░░░░░░░░░   4.91 %
+Shell            13 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.06 %
 
-shipped          7 active repos · 15 commits · 0 releases
+shipped          8 active repos · 17 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
