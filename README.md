@@ -24,11 +24,11 @@
 **𝚝𝚑𝚒𝚜 𝚖𝚘𝚗𝚝𝚑 𝚒 𝚋𝚞𝚒𝚕𝚝 𝚠𝚒𝚝𝚑:**
 
 ```txt
-JavaScript       6.5k lines ██████████████░░░░░░░░░░░  55.78 %
-Markdown         5.2k lines ███████████░░░░░░░░░░░░░░  44.11 %
+JavaScript       6.5k lines ██████████████░░░░░░░░░░░  56.09 %
+Markdown         5.1k lines ███████████░░░░░░░░░░░░░░  43.80 %
 Shell            13 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.11 %
 
-shipped          6 active repos · 8 commits · 0 releases
+shipped          5 active repos · 7 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
