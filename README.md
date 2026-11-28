@@ -28,7 +28,7 @@ JavaScript       6.5k lines ██████████████░░░�
 Markdown         5.1k lines ███████████░░░░░░░░░░░░░░  43.80 %
 Shell            13 lines   ░░░░░░░░░░░░░░░░░░░░░░░░░   0.11 %
 
-shipped          5 active repos · 7 commits · 0 releases
+shipped          4 active repos · 7 commits · 0 releases
 ```
 <!-- RECENTLY:END -->
 
